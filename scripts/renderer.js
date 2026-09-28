@@ -102,8 +102,8 @@ class Renderer {
     drawBezierCurve(p0, p1, p2, p3, num_edges, color, framebuffer) {
         // TODO: draw a sequence of straight lines to approximate a Bezier curve
         function pointTo(t){
-            const bx = (((1 - t)**3 * p0.x) + (3 * (1 - t)**2 * t * p1.x) + (3 * (1 - t) * t**2 * p2.x) + (t**3 * p3.x));
-            const by = (((1 - t)**3 * p0.y) + (3 * (1 - t)**2 * t * p1.y) + (3 * (1 - t) * t**2 * p2.y) + (t**3 * p3.y));
+            let bx = (((1 - t)**3 * p0.x) + (3 * (1 - t)**2 * t * p1.x) + (3 * (1 - t) * t**2 * p2.x) + (t**3 * p3.x));
+            let by = (((1 - t)**3 * p0.y) + (3 * (1 - t)**2 * t * p1.y) + (3 * (1 - t) * t**2 * p2.y) + (t**3 * p3.y));
             return {bx, by};
         }
 
@@ -112,8 +112,8 @@ class Renderer {
         let previous = pointTo(0);
 
         for(let i = 1; i <= num_edges; i++){
-            const t = i / num_edges;
-            const current = pointTo(t);
+            let t = i / num_edges;
+            let current = pointTo(t);
             this.drawLine(previous.bx, previous.by, current.bx, current.by, color, framebuffer);
             previous = current;
         }
