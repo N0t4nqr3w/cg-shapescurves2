@@ -57,8 +57,10 @@ class Renderer {
         // Following line is example of drawing a single line
         // (this should be removed after you implement the curve)
         //this.drawLine({x: 100, y: 100}, {x: 600, y: 300}, [255, 0, 0, 255], framebuffer);
-        this.drawBezierCurve({x: 100, y: 100}, {x: 500, y: 300}, {x: 600, y:400}, {x: 700, y: 50}, this.num_curve_sections, [255, 0, 0, 255], framebuffer);
+        this.drawBezierCurve({x: 100, y: 500}, {x: 100, y: 300}, {x: 600, y:400}, {x: 700, y: 100}, this.num_curve_sections, [255, 0, 0, 255], framebuffer);
+        this.drawBezierCurve({x: 100, y: 300}, {x: 100, y: 500}, {x: 700, y:100}, {x: 600, y: 400}, this.num_curve_sections, [255, 0, 0, 255], framebuffer);
     }
+
 
     // framebuffer:  canvas ctx image data
     drawSlide1(framebuffer) {
@@ -114,7 +116,7 @@ class Renderer {
         for(let i = 1; i <= num_edges; i++){
             let t = i / num_edges;
             let current = pointTo(t);
-            this.drawLine(previous.bx, previous.by, current.bx, current.by, color, framebuffer);
+            this.drawLine({x: Math.round(previous.bx), y: Math.round(previous.by)}, {x: Math.round(current.bx), y: Math.round(current.by)}, color, framebuffer);
             previous = current;
         }
         
